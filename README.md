@@ -23,57 +23,73 @@ mamba install -c conda-forge fenics-dolfinx mpich pyvista
 pip install imageio
 pip install gmsh
 pip install PyYAML
+```
 
-Activate the environment:
+2. Activate the environment:
+```bash
 mamba activate fenicsx-env
+```
 
-Running the Simulation
-Make sure you have activated the FEniCSx environment:
+## Running the Simulation
+
+1. Make sure you have activated the FEniCSx environment:
+```bash
 mamba activate fenicsx-env
+```
 
-Run the simulation:
+2. Run the simulation:
+```bash
 python cantilever_contact.py
+```
 
-The results will be saved as an animated GIF file named cantilever_contact.gif in the same directory.
-Customizing the Simulation
+3. The results will be saved as an animated GIF file named `cantilever_contact.gif` in the same directory.
+
+## Customizing the Simulation
+
 You can modify the following parameters in the code to customize the simulation:
 
-Geometry Parameters
-length and height: Dimensions of the cantilever beam
-nx and ny: Mesh refinement in x and y directions
-Material Parameters
-E: Young's modulus
-nu: Poisson's ratio
-Indenter Parameters
-circle_radius: Radius of the rigid circular indenter
-circle_center_x and circle_center_y: Initial position of the indenter
-max_indent: Maximum indentation depth
-num_steps: Number of incremental load steps
-Contact Parameters
-penalty_coefficient: Stiffness of the penalty contact formulation
-Understanding the Code
+### Geometry Parameters
+- `length` and `height`: Dimensions of the cantilever beam
+- `nx` and `ny`: Mesh refinement in x and y directions
+
+### Material Parameters
+- `E`: Young's modulus
+- `nu`: Poisson's ratio
+
+### Indenter Parameters
+- `circle_radius`: Radius of the rigid circular indenter
+- `circle_center_x` and `circle_center_y`: Initial position of the indenter
+- `max_indent`: Maximum indentation depth
+- `num_steps`: Number of incremental load steps
+
+### Contact Parameters
+- `penalty_coefficient`: Stiffness of the penalty contact formulation
+
+## Understanding the Code
+
 The code is organized into the following main sections:
 
-Mesh and Function Space Setup: Defines the beam geometry and creates a finite element function space for the displacement field.
+1. **Mesh and Function Space Setup**: Defines the beam geometry and creates a finite element function space for the displacement field.
 
-Material Model: Implements a Neo-Hookean hyperelastic constitutive model using the Unified Form Language (UFL).
+2. **Material Model**: Implements a Neo-Hookean hyperelastic constitutive model using the Unified Form Language (UFL).
 
-Boundary Conditions: Sets up the cantilever boundary condition (fixed at the left end).
+3. **Boundary Conditions**: Sets up the cantilever boundary condition (fixed at the left end).
 
-Contact Formulation: Implements a penalty contact model between the beam and the rigid circular indenter.
+4. **Contact Formulation**: Implements a penalty contact model between the beam and the rigid circular indenter.
 
-Weak Form: Defines the weak form of the problem, including elastic forces, contact forces, and external forces.
+5. **Weak Form**: Defines the weak form of the problem, including elastic forces, contact forces, and external forces.
 
-Solver: Sets up and configures the nonlinear solver for the problem.
+6. **Solver**: Sets up and configures the nonlinear solver for the problem.
 
-Visualization: Prepares PyVista visualization of the deformation and the indenter.
+7. **Visualization**: Prepares PyVista visualization of the deformation and the indenter.
 
-Time-stepping Loop: Gradually increases the indentation depth and solves the nonlinear problem at each step.
+8. **Time-stepping Loop**: Gradually increases the indentation depth and solves the nonlinear problem at each step.
 
-Notes
-The penalty contact method allows small penetrations between the beam and the indenter. Increasing the penalty parameter reduces penetration but may make the problem more difficult to solve.
-For large deformations or contact problems with friction, more advanced contact formulations may be needed.
-If the solver fails to converge, try:
-Increasing the number of steps (num_steps)
-Adjusting the penalty coefficient
-Modifying the solver parameters
+## Notes
+
+- The penalty contact method allows small penetrations between the beam and the indenter. Increasing the penalty parameter reduces penetration but may make the problem more difficult to solve.
+- For large deformations or contact problems with friction, more advanced contact formulations may be needed.
+- If the solver fails to converge, try:
+  - Increasing the number of steps (`num_steps`)
+  - Adjusting the penalty coefficient
+  - Modifying the solver parameters
