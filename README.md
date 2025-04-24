@@ -1,18 +1,14 @@
-# Cantilever Beam with Rigid Contact Tutorial
+# FEniCSx Finite Element Analysis Tutorials
 
-This tutorial demonstrates how to solve a hyperelastic cantilever beam problem with a rigid circular indenter using FEniCSx. The code simulates a 2D cantilever beam that deforms as a rigid circle is pressed onto it from above.
+A collection of Jupyter notebooks demonstrating structural mechanics simulations using the FEniCSx finite element framework.
 
-## Problem Description
+## Description
 
-The simulation models a 2D cantilever beam made of a hyperelastic material (Neo-Hookean) with the following setup:
-- The beam is fixed at the left end (cantilever boundary condition)
-- A rigid circular indenter is pressed onto the beam from above
-- A penalty contact formulation is used to model the interaction between the beam and the indenter
-- The indentation depth increases gradually over time
+This repository provides educational examples of nonlinear finite element analysis for structural mechanics problems. The tutorials range from basic beam deflection to advanced convergence analysis, showcasing the capabilities of FEniCSx for solving complex mechanical problems.
 
 ## Installation
 
-To run this code, you need to have FEniCSx and its dependencies installed:
+To run these notebooks, you need to have FEniCSx and its dependencies installed:
 
 1. Create a conda environment:
 ```bash
@@ -30,66 +26,56 @@ pip install PyYAML
 mamba activate fenicsx-env
 ```
 
-## Running the Simulation
+## Running the Notebooks
 
 1. Make sure you have activated the FEniCSx environment:
 ```bash
 mamba activate fenicsx-env
 ```
 
-2. Run the simulation:
+2. Launch Jupyter Lab:
 ```bash
-python cantilever_contact.py
+jupyter lab
 ```
 
-3. The results will be saved as an animated GIF file named `cantilever_contact.gif` in the same directory.
+3. Open and run the notebooks
 
-## Customizing the Simulation
+## Notebook Descriptions
 
-You can modify the following parameters in the code to customize the simulation:
+### cantilever_circular_distributed_load.ipynb
+- **Description:** 3D beam deflection simulation with a Neo-Hookean hyperelastic material model
+- **Features:** Fixed beam at one end with circular distributed force at the other end
+- **Output:** Animated visualization of beam deflection (3d_beam_deflection.gif)
 
-### Geometry Parameters
-- `length` and `height`: Dimensions of the cantilever beam
-- `nx` and `ny`: Mesh refinement in x and y directions
+### tutorial_1_analytical.ipynb
+- **Description:** Validation of beam deflection against analytical solutions
+- **Features:** Comparison between FEniCSx numerical results and engineering beam theory
+- **Output:** Comparative plots and error analysis
 
-### Material Parameters
-- `E`: Young's modulus
-- `nu`: Poisson's ratio
+### tutorial_2_mesh_refinement.ipynb
+- **Description:** Mesh refinement studies for a cantilever beam problem
+- **Features:** Both h-refinement (mesh density) and p-refinement (polynomial order)
+- **Output:** Convergence plots and mesh quality metrics
 
-### Indenter Parameters
-- `circle_radius`: Radius of the rigid circular indenter
-- `circle_center_x` and `circle_center_y`: Initial position of the indenter
-- `max_indent`: Maximum indentation depth
-- `num_steps`: Number of incremental load steps
+### tutorial_3_failure_conditions.ipynb
+- **Description:** Analysis of nonlinear solver convergence behavior
+- **Features:** Investigation of convergence failure under different load magnitudes
+- **Output:** Visualization of convergence boundaries and solver behavior
 
-### Contact Parameters
-- `penalty_coefficient`: Stiffness of the penalty contact formulation
+## Key Features
 
-## Understanding the Code
-
-The code is organized into the following main sections:
-
-1. **Mesh and Function Space Setup**: Defines the beam geometry and creates a finite element function space for the displacement field.
-
-2. **Material Model**: Implements a Neo-Hookean hyperelastic constitutive model using the Unified Form Language (UFL).
-
-3. **Boundary Conditions**: Sets up the cantilever boundary condition (fixed at the left end).
-
-4. **Contact Formulation**: Implements a penalty contact model between the beam and the rigid circular indenter.
-
-5. **Weak Form**: Defines the weak form of the problem, including elastic forces, contact forces, and external forces.
-
-6. **Solver**: Sets up and configures the nonlinear solver for the problem.
-
-7. **Visualization**: Prepares PyVista visualization of the deformation and the indenter.
-
-8. **Time-stepping Loop**: Gradually increases the indentation depth and solves the nonlinear problem at each step.
+- Nonlinear hyperelastic material modeling
+- Large deformation mechanics
+- Incremental loading techniques
+- Convergence analysis
+- Mesh refinement studies
+- Visualization of results
+- Validation against analytical solutions
 
 ## Notes
 
-- The penalty contact method allows small penetrations between the beam and the indenter. Increasing the penalty parameter reduces penetration but may make the problem more difficult to solve.
-- For large deformations or contact problems with friction, more advanced contact formulations may be needed.
-- If the solver fails to converge, try:
-  - Increasing the number of steps (`num_steps`)
-  - Adjusting the penalty coefficient
-  - Modifying the solver parameters
+- Each notebook includes detailed explanations of the problem setup, solution approach, and results
+- For large models, computation time may be significant
+- The PyVista visualization creates an animated GIF showing the deflection over time
+
+These tutorials provide a comprehensive introduction to nonlinear finite element analysis using FEniCSx, from basic validation to advanced convergence studies.

@@ -1,0 +1,10 @@
+ChatGPT-4o was used to help with plotting functions and data visualization. 
+ChatGPT-4o was used to understand how to use various libraries. 
+ChatGPT-4o was used to understand how to install the required libraries. 
+ChatGPT-4o was used to write and format the README file. 
+ChatGPT-4o was used to write clear and descriptive function comments. 
+ChatGPT-4o was used to help write functions that throw errors and their corresponding tests. 
+ChatGPT-4o was used to make the testing more robust. 
+ChatGPT-4o was used to help get an initial structure for the code. 
+ChatGPT-4o was used to help pick out appropriate tutorial problems. 
+ChatGPT-4o was used broadly to help create documentation. For example, code was uploaded and ChatGPT was asked to create a description in markdown of how to use it.
